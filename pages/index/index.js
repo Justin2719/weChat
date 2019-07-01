@@ -9,11 +9,7 @@ Page({
     // 剩余任务数量
     leftCount: 0,
     //任务数据
-    list: [
-      { id: 1, name: '今天吃了没', completed: true },
-      { id: 2, name: '今天喝了没', completed: true },
-      { id: 3, name: '今天敲了没', completed: false },
-    ],
+    list: [],
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
@@ -70,6 +66,7 @@ Page({
     this.setData(this.data)
 
     this.setLeftCount()
+    this.saveData()
   },
   // 切换任务状态
   toggleState(e){
@@ -81,6 +78,7 @@ Page({
     this.setData(this.data)
 
     this.setLeftCount()
+    this.saveData()
   },
   // 切换所有任务状态
   toggleAll() {
@@ -90,6 +88,7 @@ Page({
     this.setData(this.data)
 
     this.setLeftCount()
+    this.saveData()
   },
   //添加任务 1,双向数据绑定
   getName(e) {
@@ -109,19 +108,30 @@ Page({
     this.setData(this.data)
 
     this.setLeftCount()
+    this.saveData()
   },
   // 清除已完成的任务
   clearCompleted(){
     this.data.list = this.data.list.filter(item => !item.completed)
     this.setData(this.data)
+    this.saveData()
   },
   onShow(){
     this.setLeftCount()
+    this.getData()
   },
   // 显示剩余任务
   setLeftCount(){
     this.data.leftCount = this.data.list.filter(item => !item.completed).length
     this.setData(this.data)
   },
-  // 显示隐藏清空按钮
+  // 存储数据到storage
+  saveData(){
+    wx.setStorageSync('todos', this.data.list)
+  },
+  //从storage中获取数据
+  getData(){
+    this.data.list = wx.getStorageSync('todos') || []
+    this.setData(this.data)
+  }
 })
