@@ -1,0 +1,33 @@
+<!--index.wxml-->
+
+<!-- 头部 -->
+<view class="header">
+  <image src='/assets/plus.png'></image>
+  <input placeholder='Anthing here...' value='{{name}}' bindinput='getName' bindconfirm='addItem'></input>
+</view>
+
+<block wx:if='{{list.length > 0}}'>
+  <!-- 列表 -->
+  <view class="list">
+    <view class='item' wx:for='{{list}}' wx:key='id'>
+      <icon type='circle' type="{{item.completed ? 'success': 'circle'}}" bindtap='toggleState' data-id='{{item.id}}'></icon>
+      <text class='{{item.completed ? "completed" : ""}}'>{{item.name}}</text>
+      <icon type='clear' data-id='{{item.id}}' bindtap='delItem'></icon>
+    </view>
+  </view>
+
+  <!-- 底部 -->
+  <view class='footer'>
+    <text bindtap='toggleAll'>toggle all</text>
+    <text>{{leftCount}} items left</text>
+    <text wx:if='{{leftCount != list.length}}' bindtap='clearCompleted'>clear completed</text>
+  </view>
+</block>
+
+<block wx:else>
+  <!-- 提示消息 -->
+  <view class="tips">
+    <view class="title">Congratulations</view>
+    <view class="content">There's no more work left</view>
+  </view>
+</block>

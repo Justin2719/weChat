@@ -1,0 +1,66 @@
+/**index.wxss**/
+page {
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+.header {
+  border: 1rpx solid #ccc;
+  display: flex;
+  border-radius: 8rpx;
+  height: 88rpx;
+  align-items: center;
+  padding: 0 10rpx;
+  box-shadow: 0 0 10rpx #ccc;
+}
+.header image {
+  width: 40rpx;
+  height: 40rpx;
+  padding-right: 10rpx;
+}
+
+.list {
+  border: 1rpx solid #ccc;
+  margin-top: 24rpx;
+  border-bottom: none;
+  border-radius: 8rpx;
+}
+.list .item {
+  border-bottom: 1rpx solid #ccc;
+  height: 88rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 10rpx;
+}
+.list .item text {
+  flex: 1;
+  margin-left: 20rpx;
+}
+/* 表示有completed类的text */
+.list .item text.completed {
+  color: #999;
+  text-decoration: line-through;
+}
+
+.footer {
+  margin-top: 10rpx;
+  color: #999;
+  font-size: 32rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* tips样式 */
+.tips {
+  color: #999;
+  text-align: center;
+}
+
+.tips .title {
+  font-size: 60rpx;
+  margin-top: 200rpx;
+}
+
+.tips .content {
+  font-size: 40rpx;
+  margin-top: 40rpx;
+}
